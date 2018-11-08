@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport">
+  <title> Anna's blog </title>
+
+
+  <link href="./style.css" rel="stylesheet"/>
+  <style>
+    .wrapper {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .post {
+      width: 450px;
+    }
+    .post__title {
+      margin-top: 30px;
+      margin-bottom: 5px;
+    }
+    .post__title-link {
+      text-decoration: none;
+      color: rgb(60, 128, 94);
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    .post__datetime {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-size: 13px;
+      color: rgb(17, 16, 16);
+      margin: 5px 0;
+    }
+    .post__content {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-size: 16px;
+      color: rgb(15, 17, 17);
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  
+  {% block content %}
+  <div class="wrapper">
+    {% for post in object_list %}
+    <div class="post">
+      <h2 class="post__title">
+        <a href="{{ post.get_absolute_url }}" class="post__title-link">{{ post.title }}</a>
+      </h2>
+      <p class="post__content">{{ post.content }}</p>
+      <p class="post__datetime">{{ post.datetime }}</p>
+    </div>
+      {% empty %}
+      <p>Нет постов</p>
+    {% endfor %}
+  </div>
+ 
+ 
+  {% extends 'blog/base.html' %}
+  
+  {% endblock %} 
+
+</body>
+</html>
