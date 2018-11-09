@@ -4,10 +4,5 @@
   <p>{{ post.datetime }}</p>
 
   {% extends 'blog/base.html' %}
-  
-  <p>
-      {% load disqus_tags %}
-      {% disqus_dev %}
-      {% disqus_show_comments %}
-  </p>
+ 
 {% endblock %}

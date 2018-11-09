@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'disqus',
 ]
 
 MIDDLEWARE = [
@@ -50,9 +49,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-DISQUS_API_KEY = '***'
-DISQUS_WEBSITE_SHORTNAME = '***'
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -123,7 +119,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-                    os.path.join(BASE_DIR, 'static'),
-                    )
