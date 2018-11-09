@@ -1,9 +1,9 @@
 # MyBlog
 This project is a mix of aiming to level-up my knowledges about python abilities with a craving to make something bigger than I tried before
 
-The instruments I used are Django 2.0 & Python 3.7(pls, pay attention; all the commands used regarding these versions), Disqus, Bootstrap and some airing of my HTML knoweledges.
+The instruments I used are Django 2.0 & Python 3.7(pls, pay attention - with the other versions settings can be different), Disqus, Bootstrap and some airing of my HTML knoweledges.
 
-## Settings
+## Installings
 The first step to me is to activate the virtualenv in the terminal:
 ```
 source env/bin/activate
@@ -41,9 +41,9 @@ Read clearly the Dj documentation that is not coprehensive and build the module:
 
 ```
 class Post(models.Model):
-    title = models.CharField(max_length=255) # заголовок поста
-    datetime = models.DateTimeField(u'Дата публикации') # дата публикации
-    content = models.TextField(max_length=10000) # текст поста
+    title = models.CharField(max_length=255)       #post title
+    datetime = models.DateTimeField(u'Дата публикации')  #post date
+    content = models.TextField(max_length=10000)           #post text
 
     def __unicode__(self):
         return self.title
@@ -56,22 +56,53 @@ class Post(models.Model):
 
 Register the blog here.
 ```
-from blog.models import Post # наша модель из blog/models.py
+from blog.models import Post  #read our blog/models.py
 admin.site.register(Post)
 ```
 _____
 To sum it up:
-
 ```
-python manage.py makemigrations # make the site work properly
-python manage.py migrate # point at the changes we put
-python manage.py createsuperuser # signing up
+python manage.py makemigrations  #make the site work properly
+python manage.py migrate         #point at the changes we put
+python manage.py createsuperuser #signing up
 python manage.py runserver
-
 ```
-If you're alright - congratulations - http://localhost:8000/admin/ :
+If you're alright - congratulations - http://localhost:8000/admin/ 
+Make some posts:
 ![MyBlog](https://github.com/annaxarkhipova/MyBlog/blob/master/mysite/Screenshot%202018-11-06%20at%2018.24.02.png)
 
 ## Step 2
 
-      
+Use Django documentation here:
+*blog/views.py*
+```from blog.models import Post 
+from django.views.generic import ListView, DetailView
+
+class PostsListView(ListView):    #make post presented in the list
+    model = Post                   #the model to present 
+
+class PostDetailView(DetailView):  #our model detailed
+    model = Post
+```
+ *mysite/urls.py*
+ Add the line in urlpatterns:
+ ```
+url(r'^admin/', admin.site.urls),
+ ```
+ URLs in the /blog/ will process from /blog/, 
+ create a new *urls.py* in the catalog /blog/ with:
+```
+#coding: utf-8
+from django.conf.urls import patterns, url
+
+from blog.views import PostsListView, PostDetailView 
+
+urlpatterns = patterns('',
+url(r'^$', PostsListView.as_view(), name='list'), #URL http://name/blog/ 
+                                               #we will see the list of the posts
+url(r'^(?P<pk>\d+)/$', PostDetailView.as_view()), #а по URL http://name/blog/number/ 
+                                              #the posts with the defenite number
+
+)
+```
+ 
