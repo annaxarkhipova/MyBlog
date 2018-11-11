@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+    {% extends 'blog/base.html' %}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport">
   <title> Anna's blog </title>
-
+  
 
   <link href="./style.css" rel="stylesheet"/>
   <style>
@@ -24,7 +25,7 @@
     }
     .post__title-link {
       text-decoration: none;
-      color: rgb(60, 128, 94);
+      color: rgb(218, 97, 187);
       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
     .post__datetime {
@@ -42,7 +43,7 @@
   </style>
 </head>
 <body>
-  
+    
   {% block content %}
   <div class="wrapper">
     {% for post in object_list %}
@@ -53,15 +54,12 @@
       <p class="post__content">{{ post.content }}</p>
       <p class="post__datetime">{{ post.datetime }}</p>
     </div>
+
       {% empty %}
       <p>Нет постов</p>
     {% endfor %}
-  </div>
- 
- 
-  {% extends 'blog/base.html' %}
-  
-  {% endblock %} 
 
+  {% endblock %}
 </body>
 </html>
+ 

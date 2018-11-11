@@ -1,45 +1,104 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="utf-8" />
-        <title>MyBlog</title>
-        <link href="{{STATIC_URL}}bootstrap/css/bootstrap.css" rel="stylesheet">
-        <style>
-            body {
-                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-            }
-        </style>
-        <link href="{{STATIC_URL}}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-        <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <script src="{{STATIC_URL}}bootstrap/js/bootstrap.js" type="text/javascript"></script>
-        {% block extrahead %}
-        {% endblock %}
-        <script type="text/javascript">
-        $(function(){
-        {% block jquery %}
-        {% endblock %}
-        });
-        </script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Anna's Blog</title>
+
+    <link href="./style.css" rel="stylesheet"/>
+    <style>
+      .container {
+        width: 100vw;
+        height: 25vh;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 20px;
+      }
+      .post {
+        width: 450px;
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+      }
+      .post__title {
+        margin-top: 30px;
+        margin-bottom: 5px;
+        display: flex;
+      }
+      .brand {
+        color: black;
+        font-size: 35px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-bottom: 25px;
+      }
+      .post__title-link {
+        text-decoration: none;
+        color: cadetblue;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      }
+      .post__datetime {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 13px;
+        color: rgb(17, 16, 16);
+        margin: 5px 0;
+      }
+      .post__content {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 16px;
+        color: rgb(15, 17, 17);
+        margin: 5px 0;
+      }
+       .nav {
+        flex-direction:column;
+        align-items: center;
+       } 
+     
+    </style>
+
+    <link href="{{STATIC_URL}}bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <link href="{{STATIC_URL}}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="{{STATIC_URL}}bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    {% block extrahead %}
+    {% endblock %}
+    <script type="text/javascript">
+    $(function(){
+    {% block jquery %}
+    {% endblock %}
+    });
+    </script>
+</head>
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <div class="brand">My Blog</div>
-            <ul class="nav">
-                <li><a href="{% url 'list' %}" class="">Список постов</a></li>
-            </ul>
+<div class="navbar-inner">
+    <div class="container">
+        <div class="brand">Anna's Blog</div>
+        <div <ul class="nav">
+            <a href="{% url 'list' %}" class="">All posts:</a>
+        </ul>
         </div>
     </div>
+</div>
 
 </div>
 
 <div class="container">
-     {% block content %}Empty page{% endblock %}
+ {% block content %}Empty page{% endblock %}
 </div> <!-- container -->
+
+<h2 class="post__title">{{ post.title }}</h2>
+        <p class="post__datetime">{{ post.datetime }}</p>
+          <p class="post__content">{{ post.content }}</p>
+        </div>
 
 </body>
 </html>
