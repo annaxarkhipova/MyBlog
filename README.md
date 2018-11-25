@@ -1,4 +1,4 @@
-# ![MyBlog](http://annasblog.pythonanywhere.com/blog/) &middot; [![Python 3.7](https://www.python.org/)],[![Django2.0](https://www.djangoproject.com/)]
+# ![MyBlog](http://annasblog.pythonanywhere.com/blog/) &middot; Python 3.7 | Django2.0
 
 This project is a mix of aiming to level-up my knowledges about python abilities with a craving to make something bigger than I tried before
 
